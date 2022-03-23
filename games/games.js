@@ -4,7 +4,7 @@ import {
     getGames,
     createGame,
 } from '../fetch-utils.js';
-import { renderGame, renderTeam } from '../render-utils.js';
+import { renderGame } from '../render-utils.js';
 
 const currentGameEl = document.getElementById('current-game-container');
 const pastGamesEl = document.getElementById('past-games-container');
@@ -80,15 +80,15 @@ teamTwoSubtractButton.addEventListener('click', () => {
 
 finishGameButton.addEventListener('click', async() => {
     // create a new game using the current game state
-    // await createGame(currentGame);
+    await createGame(currentGame);
 
-    const games = await getGames();
+    
 
     // pastGames = games;
 
     displayAllGames();
 
-    pastGamesEl.append(games);
+  
 
     // console.log(games);
 
