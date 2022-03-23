@@ -4,7 +4,7 @@ import {
     getGames,
     createGame,
 } from '../fetch-utils.js';
-import { renderGame } from '../render-utils.js';
+import { renderGame, renderTeam } from '../render-utils.js';
 
 const currentGameEl = document.getElementById('current-game-container');
 const pastGamesEl = document.getElementById('past-games-container');
@@ -82,15 +82,14 @@ finishGameButton.addEventListener('click', async() => {
     // create a new game using the current game state
     await createGame(currentGame);
 
-    
+    const games = await getGames();
 
     // pastGames = games;
 
     displayAllGames();
 
-  
-
-    // console.log(games);
+    pastGamesEl.append(games);
+    
 
 
     // after creating this new game, re-fetch the games to get the updated state and display them (hint: call displayAllGames())
@@ -108,7 +107,7 @@ logoutButton.addEventListener('click', () => {
 });
 
  // on load . . .
-window.addEventListener('load', async() => {
+window.addEventListener('', async() => {
     // display all past games (hint: call displayAllGames())
 
 
@@ -151,8 +150,6 @@ async function displayAllGames() {
 
         const gameEl = renderGame(game);
         pastGamesEl.append(gameEl);
-
-        // console.log(games);
     }
     
     // FETCH ALL GAMES from supabase
