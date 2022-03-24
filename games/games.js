@@ -3,6 +3,8 @@ import {
     checkAuth,
     getGames,
     createGame,
+    getIds,
+    deleteGame,
 } from '../fetch-utils.js';
 import { renderGame } from '../render-utils.js';
 
@@ -18,6 +20,7 @@ const teamTwoSubtractButton = document.getElementById('team-two-subtract-button'
 const finishGameButton = document.getElementById('finish-game-button');
 const teamOneLabel = document.getElementById('team-one-name');
 const teamTwoLabel = document.getElementById('team-two-name');
+
 
 checkAuth();
 
@@ -151,7 +154,12 @@ async function displayAllGames() {
 
         const gameEl = renderGame(game);
         pastGamesEl.append(gameEl);
+        gameEl.addEventListener('click', async() => {
+            await deleteGame(game.id);
 
+            await displayAllGames();
+    
+        });
         // console.log(games);
     }
     
@@ -162,4 +170,10 @@ async function displayAllGames() {
 }
 
 
+
+
+
 displayCurrentGameEl();
+
+getIds();
+

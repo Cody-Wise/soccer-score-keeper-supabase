@@ -40,6 +40,28 @@ export async function getGames() {
     return checkError(response);    
 }
 
+export async function getIds() {
+
+    const response = await client
+        .from('games')
+        .select('id');
+    return response.body;
+
+}
+
+export async function deleteGame(id){
+
+    const response = await client
+        .from('games')
+        .delete()
+        .match({ id: id });
+
+    return response.body;
+
+}
+
+
+
 export async function getUser() {
     return client.auth.session();
 }
@@ -48,7 +70,9 @@ export async function getUser() {
 export async function checkAuth() {
     const user = await getUser();
 
-    if (!user) location.replace('../'); 
+    if (!user) { alert('You must be logged in');
+        location.replace('../');}
+    
 }
 
 export async function redirectToGames() {

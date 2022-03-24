@@ -213,3 +213,13 @@ p {
     right: 20px;
     top: 20px;
 }
+
+.delete-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* margin: 25px; */
+    height: 100%;
+    width: 100%;
+}
