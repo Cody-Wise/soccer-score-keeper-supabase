@@ -49,18 +49,40 @@ export async function getIds() {
 
 }
 
-export async function deleteGame(id){
+// export async function deleteGame(id){
+
+//     const response = await client
+//         .from('games')
+//         .delete()
+//         .match({ id: id });
+
+//     return response.body;
+
+// }
+
+export async function updateGame(name1, gameId){
 
     const response = await client
         .from('games')
-        .delete()
-        .match({ id: id });
+        .update({ name1: name1 })
+        .match({ id: gameId });
+
+
+
 
     return response.body;
 
 }
 
-
+export async function fetchDeleteGame(gameId){
+    // create a single new game in the games table using the above object
+    const response = await client
+        .from('games')
+        .delete()
+        .match({ id: gameId });
+    
+    return response;
+}
 
 export async function getUser() {
     return client.auth.session();

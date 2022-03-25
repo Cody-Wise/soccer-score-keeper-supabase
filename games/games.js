@@ -4,7 +4,8 @@ import {
     getGames,
     createGame,
     getIds,
-    deleteGame,
+    // deleteGame,
+    fetchDeleteGame,
 } from '../fetch-utils.js';
 import { renderGame } from '../render-utils.js';
 
@@ -132,6 +133,7 @@ function displayCurrentGameEl() {
 
     // change the label to show team two's name;
 
+
     // call the render game function to create a game element
 
     const game = renderGame(currentGame);
@@ -153,13 +155,35 @@ async function displayAllGames() {
     for (let game of games){
 
         const gameEl = renderGame(game);
+        gameEl.classList.remove('delete-button');
+        gameEl.classList.add('delete-button2');
+        
         pastGamesEl.append(gameEl);
-        gameEl.addEventListener('click', async() => {
-            await deleteGame(game.id);
+        // gameEl.addEventListener('click', async() => {
+        //     // await deleteGame(game.id);
 
-            await displayAllGames();
+        //     await displayAllGames();
     
-        });
+        // });
+
+        // gameEl.addEventListener('click', async(e) => {
+        //     //  
+
+        //     console.log(e);
+        //     await displayAllGames();
+
+        //     // await updateGame(game.name1, e.path[0].id);
+
+        //     // console.log(game.name1);
+
+
+            
+
+
+
+            
+    
+        // });
         // console.log(games);
     }
     
@@ -169,6 +193,20 @@ async function displayAllGames() {
     // render and append a past game for each past game in state
 }
 
+export async function deleteGame(e) {
+    console.log(e);
+
+    await fetchDeleteGame(e.path[1].id);
+    
+    displayAllGames();
+}
+
+
+    
+
+    
+    
+   
 
 
 

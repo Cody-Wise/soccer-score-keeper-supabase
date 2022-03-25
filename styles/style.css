@@ -214,12 +214,16 @@ p {
     top: 20px;
 }
 
-.delete-button{
+.delete-button > button{
+    display:none;
+}
+
+.delete-button2 {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* margin: 25px; */
-    height: 100%;
-    width: 100%;
+    margin: 25px;
+    padding: 25px
+    
 }

@@ -1,13 +1,31 @@
+import { deleteGame } from './games/games.js';
+
 export function renderGame(game) {
     const div = document.createElement('div');
     const team1Div = renderTeam(game.name1, game.score1);
     const team2Div = renderTeam(game.name2, game.score2);
 
+    // div.setAttribute('contenteditable', 'true');
 
-    div.append(team1Div, team2Div);
+
+    div.id = game.id;
+    
+    const deleteButton = document.createElement('button');
+    // deleteButton.classList.add('delete-button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', deleteGame);
+
+
+
+    
+
+    div.append(team1Div, team2Div, deleteButton);
+
+
 
     div.classList.add('game');
-    // button.classList.add('delete-button');
+    div.classList.add('delete-button');
+
 
     return div;
 }
